@@ -1,152 +1,191 @@
 // ============================================================
-//  ROSWELL CRUZ — E-Portfolio JavaScript
-//  DOM & JavaScript Features:
-//   1. Navbar scroll + active link tracking (Intersection Observer)
-//   2. Skill bar animations on scroll
-//   3. Project detail modal (show/hide dynamic content)
-//   4. Contact form validation
-//   5. Download CV button feedback
-//   6. Mobile hamburger menu
-//   7. Back-to-top button
-//   8. Animated entrance on scroll
+//  ROSWELL CRUZ — E-Portfolio JavaScript (jQuery Integrated)
+//  jQuery & DOM Interaction Logic:
+//   1. Dynamic scroll indicators and active section tracking (Intersection Observer)
+//   2. Sticky navbar scroll behavior
+//   3. Responsive stats counting animation
+//   4. Mobile hamburger toggle animation
+//   5. Staggered reveal entry states on page scroll
+//   6. Skills progress animation triggered on view
+//   7. Details project modal dynamically rendered
+//   8. User contact form validation and alerts
+//   9. CV preparation and local file download
+//  10. Smooth back-to-top transition
 // ============================================================
 
-document.addEventListener('DOMContentLoaded', () => {
+$(function () {
 
-  // ── Footer year ──────────────────────────────────────────
-  const yearEl = document.getElementById('footerYear');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  // ── Set Dynamic Footer Year ────────────────────────────────
+  $('#footerYear').text(new Date().getFullYear());
 
-  // ── Navbar scroll shadow ──────────────────────────────────
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.style.boxShadow = window.scrollY > 30
-      ? '0 4px 24px rgba(0,0,0,0.25)'
-      : 'none';
+  // ── Navbar Scroll Behavior ─────────────────────────────────
+  $(window).on('scroll', function () {
+    if ($(window).scrollTop() > 30) {
+      $('#navbar').addClass('scrolled');
+    } else {
+      $('#navbar').removeClass('scrolled');
+    }
   });
 
   // ── Active nav link via Intersection Observer ─────────────
-  const sections  = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.nav-links .nav-link');
+  const sections = $('section[id]');
+  const navLinks = $('.nav-links .nav-link');
 
   const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`.nav-links .nav-link[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('active');
+        navLinks.removeClass('active');
+        const activeLink = $(`.nav-links .nav-link[href="#${entry.target.id}"]`);
+        if (activeLink.length) activeLink.addClass('active');
       }
     });
-  }, { rootMargin: '-50% 0px -50% 0px' });
+  }, { rootMargin: '-40% 0px -40% 0px' });
 
-  sections.forEach(s => navObserver.observe(s));
+  sections.each(function () {
+    navObserver.observe(this);
+  });
 
-  // ── Hamburger menu toggle ─────────────────────────────────
-  const hamburger = document.getElementById('hamburger');
-  const navLinksEl = document.getElementById('navLinks');
+  // ── Hamburger Menu Toggle ──────────────────────────────────
+  $('#hamburger').on('click', function () {
+    const $navLinks = $('#navLinks');
+    $navLinks.toggleClass('open');
 
-  if (hamburger && navLinksEl) {
-    hamburger.addEventListener('click', () => {
-      navLinksEl.classList.toggle('open');
-      // animate hamburger lines
-      const spans = hamburger.querySelectorAll('span');
-      if (navLinksEl.classList.contains('open')) {
-        spans[0].style.transform = 'translateY(7px) rotate(45deg)';
-        spans[1].style.opacity   = '0';
-        spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-      } else {
-        spans[0].style.transform = '';
-        spans[1].style.opacity   = '';
-        spans[2].style.transform = '';
-      }
-    });
+    // Animate hamburger spans
+    const $spans = $(this).find('span');
+    if ($navLinks.hasClass('open')) {
+      $spans.eq(0).css('transform', 'translateY(8px) rotate(45deg)');
+      $spans.eq(1).css('opacity', '0');
+      $spans.eq(2).css('transform', 'translateY(-8px) rotate(-45deg)');
+    } else {
+      $spans.eq(0).css('transform', '');
+      $spans.eq(1).css('opacity', '');
+      $spans.eq(2).css('transform', '');
+    }
+  });
 
-    // Close on nav link click (mobile)
-    navLinksEl.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinksEl.classList.remove('open');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = '';
-        spans[1].style.opacity   = '';
-        spans[2].style.transform = '';
-      });
-    });
-  }
+  // Close nav on click (for mobile layout)
+  $('.nav-links .nav-link').on('click', function () {
+    $('#navLinks').removeClass('open');
+    $('#hamburger span').css({ transform: '', opacity: '' });
+  });
 
-  // ── Skill bar animation on scroll ────────────────────────
-  const skillFills = document.querySelectorAll('.skill-fill');
-
+  // ── Skills bar animation on scroll ────────────────────────
   const skillObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const fill  = entry.target;
-        const width = fill.getAttribute('data-width') || '0';
-        fill.style.width = width + '%';
-        skillObserver.unobserve(fill);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  skillFills.forEach(fill => skillObserver.observe(fill));
-
-  // ── Fade-in entrance animations ──────────────────────────
-  const animEls = document.querySelectorAll(
-    '.skill-card, .project-card, .timeline-item, .contact-item, .kpi-card'
-  );
-
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.style.opacity   = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, i * 60);
-        fadeObserver.unobserve(entry.target);
+        const $fill = $(entry.target);
+        const width = $fill.data('width') || 0;
+        $fill.css('width', width + '%');
+        skillObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
 
-  animEls.forEach(el => {
-    el.style.opacity   = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    fadeObserver.observe(el);
+  $('.skill-fill').each(function () {
+    skillObserver.observe(this);
   });
 
-  // ── Back to top ───────────────────────────────────────────
-  const backTop = document.getElementById('backTop');
-  window.addEventListener('scroll', () => {
-    backTop.classList.toggle('show', window.scrollY > 400);
+  // ── Staggered Entrance Animations ─────────────────────────
+  const animEls = $('.skill-card, .project-card, .timeline-item, .contact-item, .detail-card');
+
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const $target = $(entry.target);
+        setTimeout(() => {
+          $target.css({
+            opacity: 1,
+            transform: 'translateY(0)'
+          });
+        }, i * 65);
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  animEls.each(function () {
+    $(this).css({
+      opacity: 0,
+      transform: 'translateY(30px)',
+      transition: 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
+    });
+    fadeObserver.observe(this);
   });
 
-  // ── Contact form validation ───────────────────────────────
-  const form    = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
+  // ── Dynamic Counting Stats Animation ──────────────────────
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const $statCards = $(entry.target).find('.stat-card');
+        $statCards.each(function () {
+          const $num = $(this).find('.stat-num');
+          const target = parseInt($num.data('target'));
+          if (isNaN(target)) return; // skip CvSU card
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
+          $({ countVal: 0 }).animate({ countVal: target }, {
+            duration: 1800,
+            easing: 'swing',
+            step: function () {
+              if (target === 100) {
+                $num.text(Math.floor(this.countVal) + '%');
+              } else {
+                $num.text(Math.floor(this.countVal) + '+');
+              }
+            },
+            complete: function () {
+              if (target === 100) {
+                $num.text(target + '%');
+              } else {
+                $num.text(target + '+');
+              }
+            }
+          });
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  if ($('.hero-stats').length) {
+    statsObserver.observe($('.hero-stats')[0]);
+  }
+
+  // ── Back-to-Top Button Scroll Tracker ─────────────────────
+  $(window).on('scroll', function () {
+    if ($(window).scrollTop() > 400) {
+      $('#backTop').addClass('show');
+    } else {
+      $('#backTop').removeClass('show');
+    }
+  });
+
+  // ── Contact Form Validation ────────────────────────────────
+  const $form = $('#contactForm');
+  const $success = $('#formSuccess');
+
+  if ($form.length) {
+    $form.on('submit', function (e) {
       e.preventDefault();
       let valid = true;
 
       const fields = [
-        { id: 'fname',    errId: 'fnameError',    label: 'Full name',     type: 'text'  },
-        { id: 'femail',   errId: 'femailError',   label: 'Email address', type: 'email' },
-        { id: 'fsubject', errId: 'fsubjectError', label: 'Subject',       type: 'text'  },
-        { id: 'fmessage', errId: 'fmessageError', label: 'Message',       type: 'text'  },
+        { id: 'fname', errId: 'fnameError', label: 'Full name', type: 'text' },
+        { id: 'femail', errId: 'femailError', label: 'Email address', type: 'email' },
+        { id: 'fsubject', errId: 'fsubjectError', label: 'Subject', type: 'text' },
+        { id: 'fmessage', errId: 'fmessageError', label: 'Message', type: 'text' },
       ];
 
       fields.forEach(f => {
-        const el    = document.getElementById(f.id);
-        const errEl = document.getElementById(f.errId);
-        const val   = el.value.trim();
+        const $el = $('#' + f.id);
+        const $errEl = $('#' + f.errId);
+        const val = $el.val().trim();
 
-        // Clear previous
-        el.classList.remove('error');
-        errEl.textContent = '';
+        $el.removeClass('error');
+        $errEl.text('');
 
         if (!val) {
-          el.classList.add('error');
-          errEl.textContent = `${f.label} is required.`;
+          $el.addClass('error');
+          $errEl.text(`${f.label} is required.`);
           valid = false;
           return;
         }
@@ -154,48 +193,42 @@ document.addEventListener('DOMContentLoaded', () => {
         if (f.type === 'email') {
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!emailRegex.test(val)) {
-            el.classList.add('error');
-            errEl.textContent = 'Please enter a valid email address.';
+            $el.addClass('error');
+            $errEl.text('Please enter a valid email address.');
             valid = false;
           }
         }
 
         if (f.id === 'fmessage' && val.length < 10) {
-          el.classList.add('error');
-          errEl.textContent = 'Message must be at least 10 characters.';
+          $el.addClass('error');
+          $errEl.text('Message must be at least 10 characters.');
           valid = false;
         }
       });
 
       if (valid) {
-        // Simulate send
-        const submitBtn = form.querySelector('[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending…';
+        const $submitBtn = $form.find('[type="submit"]');
+        $submitBtn.prop('disabled', true).text('Sending…');
 
         setTimeout(() => {
-          form.reset();
-          success.classList.add('show');
-          submitBtn.disabled   = false;
-          submitBtn.textContent = 'Send Message';
-          setTimeout(() => success.classList.remove('show'), 5000);
+          $form[0].reset();
+          $success.addClass('show');
+          $submitBtn.prop('disabled', false).text('Send Message');
+          setTimeout(() => $success.removeClass('show'), 5000);
         }, 1200);
       }
     });
 
-    // Clear error on input
-    form.querySelectorAll('input, textarea').forEach(el => {
-      el.addEventListener('input', () => {
-        el.classList.remove('error');
-        const errId = el.id + 'Error';
-        const errEl = document.getElementById(errId);
-        if (errEl) errEl.textContent = '';
-      });
+    // Clear error message on typing
+    $form.find('input, textarea').on('input', function () {
+      const $el = $(this);
+      $el.removeClass('error');
+      $('#' + $el.attr('id') + 'Error').text('');
     });
   }
 });
 
-// ── Project modal data ────────────────────────────────────
+// ── Project Modal Data & Dynamic View Render ───────────────────
 const projects = [
   {
     title: 'Basic Calculator',
@@ -224,71 +257,61 @@ const projects = [
 ];
 
 function showProjectDetail(index) {
-  const p       = projects[index];
-  const modal   = document.getElementById('projectModal');
-  const content = document.getElementById('modalContent');
+  const p = projects[index];
+  const $modal = $('#projectModal');
+  const $content = $('#modalContent');
 
-  content.innerHTML = `
+  const techBadges = p.tech.map(t => `
+    <span style="background:rgba(255,255,255,0.03); border:1px solid #334155; color:#cbd5e1; font-family:'Outfit'; font-size:0.75rem; font-weight:500; padding:0.25rem 0.65rem; border-radius:6px;">
+      ${t}
+    </span>
+  `).join('');
+
+  $content.html(`
     <img src="${p.img}" alt="${p.title}"
-      style="width:100%;border-radius:10px;margin-bottom:1.5rem;object-fit:cover;max-height:220px;"/>
-    <span style="font-size:0.7rem;font-weight:700;color:#c9a84c;letter-spacing:0.08em;text-transform:uppercase;">
+      style="width:100%; border-radius:8px; margin-bottom:1.25rem; object-fit:cover; max-height:220px; border:1px solid #334155;"/>
+    <span style="font-family:'Outfit'; font-size:0.72rem; font-weight:600; color:#64748b; letter-spacing:0.08em; text-transform:uppercase; display:block; margin-bottom:0.35rem;">
       ${p.tag}
     </span>
-    <h3 style="margin:0.4rem 0 0.75rem;">${p.title}</h3>
-    <p>${p.desc}</p>
-    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin:1rem 0 1.5rem;">
-      ${p.tech.map(t => `<span style="background:#eef0f3;color:#4a5260;font-size:0.75rem;font-weight:600;padding:0.3rem 0.7rem;border-radius:6px;">${t}</span>`).join('')}
+    <h3 style="margin:0 0 0.65rem; font-family:'Outfit'; font-weight:600; font-size:1.4rem; color:#f8fafc;">${p.title}</h3>
+    <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.6; margin-bottom:1.25rem;">${p.desc}</p>
+    <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.75rem;">
+      ${techBadges}
     </div>
     <a href="${p.link}" target="_blank" class="btn btn-primary btn-sm">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
         <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
       </svg>
       View Live Project
     </a>
-  `;
+  `);
 
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  $modal.addClass('active');
+  $('body').css('overflow', 'hidden');
 }
 
 function closeModal() {
-  document.getElementById('projectModal').classList.remove('active');
-  document.body.style.overflow = '';
+  $('#projectModal').removeClass('active');
+  $('body').css('overflow', '');
 }
 
-// Close modal on overlay click
-document.getElementById('projectModal')?.addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) closeModal();
-});
-
-// Close modal on Escape key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
-});
-
-// ── Download CV ───────────────────────────────────────────
+// ── Download CV Button Handler ──────────────────────────────
 function downloadCV() {
-  const btn = document.getElementById('downloadCvBtn') ||
-              document.querySelector('[onclick="downloadCV()"]');
+  const $btn = $('#downloadCvBtn');
+  const original = $btn.html();
 
-  // Visual feedback
-  if (btn) {
-    const original = btn.innerHTML;
-    btn.innerHTML = `
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="20 6 9 17 4 12"/>
-      </svg>
-      Preparing CV…
-    `;
-    btn.disabled = true;
+  $btn.html(`
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+    Preparing CV…
+  `).prop('disabled', true);
 
-    setTimeout(() => {
-      btn.innerHTML = original;
-      btn.disabled  = false;
+  setTimeout(() => {
+    $btn.html(original).prop('disabled', false);
 
-      // Create a simple downloadable text CV
-      const cvContent = `ROSWELL CRUZ
+    const cvContent = `ROSWELL CRUZ
 Frontend Developer
 General Trias, Cavite, Philippines
 Email: cryefionacruz@gmail.com
@@ -302,8 +325,8 @@ Cavite State University – Tanza Campus
 2023 – Present
 
 Senior High School – ICT Track
-General Trias, Cavite
-2019 – 2023
+Tanza National Trade School
+2022 – 2023
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SKILLS
@@ -318,18 +341,18 @@ Basic Calculator     — https://calculatorniross.netlify.app
 Coffee Website       — https://kapeniross.netlify.app
 To-Do List App       — https://todopart2.netlify.app/
 `;
-      const blob = new Blob([cvContent], { type: 'text/plain' });
-      const url  = URL.createObjectURL(blob);
-      const a    = document.createElement('a');
-      a.href     = url;
-      a.download = 'Roswell_Cruz_CV.txt';
-      a.click();
-      URL.revokeObjectURL(url);
-    }, 900);
-  }
+
+    const blob = new Blob([cvContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Roswell_Cruz_CV.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  }, 900);
 }
 
-// ── Scroll to top ─────────────────────────────────────────
+// ── Back-to-Top Click Handler ────────────────────────────────
 function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  $('html, body').animate({ scrollTop: 0 }, 600);
 }
