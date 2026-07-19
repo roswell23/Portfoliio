@@ -47,15 +47,17 @@ $(function () {
 
   // ── Hamburger Menu Toggle ──────────────────────────────────
   $('#hamburger').on('click', function () {
+    const $btn = $(this);
     const $navLinks = $('#navLinks');
     $navLinks.toggleClass('open');
+    $btn.toggleClass('active');
 
     // Animate hamburger spans
-    const $spans = $(this).find('span');
+    const $spans = $btn.find('span');
     if ($navLinks.hasClass('open')) {
-      $spans.eq(0).css('transform', 'translateY(8px) rotate(45deg)');
+      $spans.eq(0).css('transform', 'translateY(7px) rotate(45deg)');
       $spans.eq(1).css('opacity', '0');
-      $spans.eq(2).css('transform', 'translateY(-8px) rotate(-45deg)');
+      $spans.eq(2).css('transform', 'translateY(-7px) rotate(-45deg)');
     } else {
       $spans.eq(0).css('transform', '');
       $spans.eq(1).css('opacity', '');
@@ -63,9 +65,10 @@ $(function () {
     }
   });
 
-  // Close nav on click (for mobile layout)
+  // Close nav on link click
   $('.nav-links .nav-link').on('click', function () {
     $('#navLinks').removeClass('open');
+    $('#hamburger').removeClass('active');
     $('#hamburger span').css({ transform: '', opacity: '' });
   });
 

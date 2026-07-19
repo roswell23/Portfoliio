@@ -174,7 +174,7 @@ textarea {
 }
 
 /* ============================================================
-   NAVBAR (Traditional Sticky Mode)
+   NAVBAR
    ============================================================ */
 .navbar {
   position: fixed !important;
@@ -186,26 +186,27 @@ textarea {
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
   border-bottom: 1px solid var(--border-color) !important;
-  padding: 0.75rem 0 !important;
+  padding: 0 !important;
   transition: var(--transition) !important;
 }
 
-/* Navbar becomes fully opaque when scrolled */
 .navbar.scrolled {
   background: rgba(15, 23, 42, 1) !important;
   border-bottom-color: var(--border-hover) !important;
 }
 
 .nav-inner {
-  display: flex !important;
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem;
-  height: 48px;
+  height: 60px;
+  gap: 1rem;
 }
 
+/* ── Logo ── */
 .nav-logo {
   font-family: var(--ff-title);
   font-size: 1.25rem;
@@ -213,7 +214,9 @@ textarea {
   color: var(--text-primary) !important;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
 }
 
 .nav-logo span {
@@ -221,74 +224,120 @@ textarea {
 }
 
 .nav-crown {
-  width: 20px;
+  width: 22px;
   height: auto;
-  filter: brightness(0.95);
+  /* Exact gold filter conversion with a subtle highlight glow */
+  filter: invert(62%) sepia(85%) saturate(1637%) hue-rotate(13deg) brightness(101%) contrast(95%)
+          drop-shadow(0 0 4px rgba(245, 158, 11, 0.35));
   transition: var(--transition);
 }
 
 .nav-logo:hover .nav-crown {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  /* Stronger gold color and brighter highlight glow */
+  filter: invert(62%) sepia(85%) saturate(2500%) hue-rotate(13deg) brightness(105%) contrast(98%)
+          drop-shadow(0 0 8px rgba(245, 158, 11, 0.7));
 }
 
+/* ── Nav Links ── */
 .nav-links {
-  display: flex !important;
-  gap: 0.5rem;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+  align-items: center;
 }
 
 .nav-links li {
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links .nav-link {
   font-family: var(--ff-title);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-secondary) !important;
-  padding: 0.4rem 0.8rem !important;
+  color: var(--text-secondary);
+  padding: 0.45rem 0.85rem;
   border-radius: var(--radius);
   transition: var(--transition);
+  display: block;
 }
 
 .nav-links .nav-link:hover {
-  color: var(--text-primary) !important;
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .nav-links .nav-link.active {
-  color: var(--primary) !important;
-  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary);
+  background: rgba(59, 130, 246, 0.12);
   font-weight: 600;
 }
 
+/* ── Hamburger (desktop hidden) ── */
 .nav-hamburger {
-  display: none !important;
-  /* Bootstrap override */
+  display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
-  padding: 6px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   cursor: pointer;
-  background: none;
+  background: transparent;
   border: none;
   border-radius: var(--radius);
-  transition: var(--transition);
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+  outline: none;
 }
 
-.nav-hamburger:hover {
-  background: rgba(255, 255, 255, 0.05);
+.nav-hamburger::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.nav-hamburger:hover::before {
+  border-color: var(--border-color);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.nav-hamburger.active::before {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.08);
 }
 
 .nav-hamburger span {
   display: block;
-  width: 20px;
+  width: 22px;
   height: 2px;
   background: var(--text-primary);
   border-radius: 2px;
-  transition: var(--transition);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.2s ease,
+    background 0.25s ease;
+  transform-origin: center;
+}
+
+.nav-hamburger:hover span {
+  background: var(--text-primary);
+}
+
+.nav-hamburger.active span {
+  background: var(--primary);
+}
+
+/* Spacer to balance the 3-col mobile layout — hidden on desktop */
+.nav-right {
+  display: none;
 }
 
 /* ============================================================
@@ -1248,40 +1297,78 @@ a.contact-val:hover {
 }
 
 @media (max-width: 768px) {
+
+  /* ── Mobile Nav: 3-column flex layout ── */
   .nav-inner {
-    height: 44px;
+    height: 56px;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    gap: 0;
+    width: 100%;
   }
 
+  /* Show hamburger on left */
+  .nav-hamburger {
+    display: flex;
+    order: 1;
+    flex: 0 0 40px;
+  }
+
+  /* Logo perfectly centered using auto margins */
+  .nav-logo {
+    order: 2;
+    flex: 0 0 auto;
+    margin: 0 auto;
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    gap: 0.45rem;
+    justify-content: center;
+  }
+
+  /* Crown stays visible on mobile too */
+  .nav-crown {
+    width: 20px;
+  }
+
+  /* Spacer on right to mirror hamburger width — keeps logo centered */
+  .nav-right {
+    display: block;
+    flex: 0 0 40px;
+    order: 3;
+  }
+
+  /* Nav links: dropdown below navbar */
   .nav-links {
     display: none !important;
-    position: absolute;
-    top: calc(100% + 6px);
-    /* just below the navbar */
+    position: fixed;
+    top: 60px;
     left: 1rem;
     right: 1rem;
     background: var(--bg-surface);
     flex-direction: column;
-    padding: 0.75rem;
+    padding: 0.5rem;
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
-    gap: 0.25rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  }
-
-  .nav-links .nav-link {
-    padding: 0.6rem 0.85rem !important;
-    border-radius: var(--radius);
-    width: 100%;
-    text-align: left;
+    gap: 0.2rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    z-index: 1500;
+    margin: 0 !important;
   }
 
   .nav-links.open {
     display: flex !important;
-
   }
 
-  .nav-hamburger {
-    display: flex !important;
+  .nav-links .nav-link {
+    padding: 0.65rem 0.9rem;
+    border-radius: var(--radius);
+    width: 100%;
+    text-align: left;
+    font-size: 0.9rem;
   }
 
   .hero {
