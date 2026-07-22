@@ -891,6 +891,63 @@ textarea {
   margin-bottom: 1.25rem;
 }
 
+.modal-img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  object-fit: cover;
+  max-height: 220px;
+  border: 1px solid var(--border-color);
+}
+
+.modal-tag {
+  font-family: var(--ff-title);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.modal-title {
+  margin: 0 0 0.65rem;
+  font-family: var(--ff-title);
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.modal-desc {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.modal-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.75rem;
+}
+
+.modal-tech-badge {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-family: var(--ff-title);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+.modal-link-icon {
+  vertical-align: -1px;
+}
+
 /* ============================================================
    RESUME & TIMELINE
    ============================================================ */

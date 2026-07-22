@@ -1,18 +1,3 @@
-// ============================================================
-//  ROSWELL CRUZ — E-Portfolio JavaScript (jQuery Integrated)
-//  jQuery & DOM Interaction Logic:
-//   1. Dynamic scroll indicators and active section tracking (Intersection Observer)
-//   2. Sticky navbar scroll behavior
-//   3. Responsive stats counting animation
-//   4. Mobile hamburger toggle animation
-//   5. Staggered reveal entry states on page scroll
-//   6. Skills progress animation triggered on view
-//   7. Details project modal dynamically rendered
-//   8. User contact form validation and alerts
-//   9. CV preparation and local file download
-//  10. Smooth back-to-top transition
-// ============================================================
-
 $(function () {
 
   // ── Set Dynamic Footer Year ────────────────────────────────
