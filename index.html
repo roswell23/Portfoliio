@@ -4,328 +4,457 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roswell Cruz — Portfolio</title>
-  <link rel="shortcut icon" href="./img/crown.png" type="image/x-icon">
+  <meta name="description"
+    content="Roswell Cruz — Frontend Developer Portfolio. Pursuing BSIT at Cavite State University - Tanza. Specializing in modern, responsive, and user-friendly web applications." />
+  <meta name="author" content="Roswell Cruz" />
+  <title>Roswell Cruz — Frontend Developer Portfolio</title>
+  <link rel="shortcut icon" href="img/crown.png" type="image/x-icon" />
+
+  <!-- Fonts & Devicons CDN -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap"
-    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
   <link rel="stylesheet" href="bootstrap-5.3.7-dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- NAV -->
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-      <a class="nav-logo" href="#home">
-        <img src="img/crown.png" alt="crown" class="nav-crown" />
-        <span>RC</span>
+      <a class="nav-logo" href="#home" id="navLogo">
+        <img src="img/crown.png" alt="Roswell Crown Logo" class="nav-crown" />
+        <span>Roswell</span>
+        <span class="nav-logo-badge">DEV</span>
       </a>
+
       <ul class="nav-links" id="navLinks">
         <li><a href="#home" class="nav-link active">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#resume" class="nav-link">Resume</a></li>
+        <li><a href="#genesis" class="nav-link">Case Study</a></li>
+        <li><a href="#journey" class="nav-link">Journey</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
-      <div class="nav-right"></div>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
-  <!-- HOME / HERO -->
+  <!-- HERO SECTION -->
   <section class="hero" id="home">
-    <div class="hero-content">
-      <span class="hero-badge">
-        <span class="badge-dot"></span> Available for Work
-      </span>
-      <h1 class="hero-title">Roswell <em>Cruz</em></h1>
-      <p class="hero-sub">Frontend Developer crafting elegant, high-performance web experiences from Cavite,
-        Philippines.</p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="#contact" class="btn btn-outline">Let's Talk</a>
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Hero Text Left -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Available for Opportunities</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="name-highlight">Roswell Cruz</span>
+            <span class="hero-role">Frontend Developer</span>
+          </h1>
+
+          <p class="hero-sub">
+            Crafting responsive, modern, and user-friendly web experiences with clean HTML, CSS, JavaScript, and intuitive UI designs from Cavite, Philippines.
+          </p>
+
+          <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              View My Projects
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              Contact Me
+            </a>
+          </div>
+
+          <!-- Social Links -->
+          <div class="hero-socials">
+            <a href="https://github.com/roswell23" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub Profile">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn Profile">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:cryefionacruz@gmail.com" class="social-link" title="Email Roswell">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>cryefionacruz@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Visual Right: Roswell's Professional Portrait -->
+        <div class="hero-visual">
+          <div class="hero-portrait-card">
+            <div class="hero-portrait-inner">
+              <img src="img/397437227_351351273940240_3259295406200099479_n.jpg" alt="Roswell Cruz — Frontend Developer" class="hero-portrait-img" />
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div class="stat-card">
-          <span class="stat-num" data-target="4">0</span>
-          <span class="stat-label">Projects Built</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num" data-target="100">0</span>
-          <span class="stat-label">Dedication %</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num">CvSU</span>
-          <span class="stat-label">Tanza Campus</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-scroll" id="heroScrollBtn">
-      <span>Scroll Down</span>
-      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ABOUT SECTION -->
   <section class="section" id="about">
     <div class="container">
       <div class="section-label">01 — About Me</div>
-      <h2 class="section-title">Crafted with <em>purpose</em></h2>
-      <div class="about-grid">
-        <div class="about-img-wrap">
-          <img src="https://wellportfolio.netlify.app/img/wmremove-transformed.png" alt="Roswell Cruz"
-            class="about-img" />
-          <div class="about-img-tag">Roswell Cruz — Cavite, PH</div>
-        </div>
-        <div class="about-text">
-          <p class="about-intro">Hello! I'm <strong>Roswell Cruz</strong>, a passionate tech enthusiast from Cavite,
-            Philippines. Currently pursuing my studies at Cavite State University–Tanza, I'm dedicated to becoming a
-            skilled Frontend Developer.</p>
-          <p>I love creating beautiful and functional web experiences that make a difference. My goal is to combine
-            technical expertise with creative design to build engaging digital solutions that leave a lasting
-            impression.</p>
+      <h2 class="section-title">Crafting web interfaces with <em>purpose & precision</em></h2>
+      <p class="section-desc">
+        A dedicated student and developer building functional, user-focused digital web applications.
+      </p>
 
-          <div class="about-details">
-            <div class="detail-card">
-              <span class="detail-label">Location</span>
-              <span class="detail-val">General Trias, Cavite</span>
-            </div>
-            <div class="detail-card">
-              <span class="detail-label">Education</span>
-              <span class="detail-val">CvSU – Tanza</span>
-            </div>
-            <div class="detail-card">
-              <span class="detail-label">Specialization</span>
-              <span class="detail-val">Frontend Development</span>
-            </div>
-            <div class="detail-card">
-              <span class="detail-label">Status</span>
-              <span class="detail-val status-open">Open to Opportunities</span>
-            </div>
+      <div class="about-grid">
+        <!-- Story & Intro Left -->
+        <div class="about-intro-box">
+          <p class="about-intro-text">
+            Hello! I'm <strong>Roswell Cruz</strong>, an aspiring Frontend Developer based in General Trias, Cavite, Philippines. I am currently pursuing my <strong>Bachelor of Science in Information Technology (BSIT)</strong> at <strong>Cavite State University – Tanza Campus</strong>.
+          </p>
+          <p class="about-intro-text">
+            My passion lies in bridging clean technical code with intuitive interface design. I specialize in turning ideas into responsive, accessible, and fast web applications, with a continuous drive to master modern frameworks and SaaS software engineering.
+          </p>
+
+          <div class="about-tags">
+            <span class="info-chip">Location: General Trias, Cavite</span>
+            <span class="info-chip">University: CvSU – Tanza</span>
+            <span class="info-chip">Degree: BS Information Technology</span>
+            <span class="info-chip">Status: Available for Opportunities</span>
           </div>
 
-          <button class="btn btn-primary download-cv-btn" id="downloadCvBtn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
+          <button class="btn btn-primary" id="downloadCvBtn" onclick="downloadCV()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            Download CV
+            <span>Download CV / Resume</span>
           </button>
         </div>
+
+        <!-- Statistics Right -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-num" data-target="4">0</span>
+            <span class="stat-label">Projects Built & Deployed</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" data-target="10">0</span>
+            <span class="stat-label">Tech Stack & Tools</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" data-target="2">0</span>
+            <span class="stat-label">Years Dedicated Learning</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">CvSU</span>
+            <span class="stat-label">BSIT Tanza Campus</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS -->
+  <!-- SKILLS SECTION -->
   <section class="section" id="skills">
     <div class="container">
-      <div class="section-label">02 — Skills</div>
-      <h2 class="section-title">Technical <em>expertise</em></h2>
-      <div class="skills-grid">
-        <!-- HTML5 -->
-        <div class="skill-card">
-          <div class="skill-header">
-            <div class="skill-icon-wrap">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"
-                class="skill-icon" />
+      <div class="section-label">02 — Technical Skills</div>
+      <h2 class="section-title">Technologies & <em>tools I use</em></h2>
+      <p class="section-desc">
+        A structured breakdown of my current development stack across frontend engineering, programming, databases, and workflow tools.
+      </p>
+
+      <div class="skills-container">
+        <!-- Category 1: Frontend -->
+        <div class="skills-category-group">
+          <div class="category-header">
+            <div class="category-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
             </div>
-            <span class="skill-num">01</span>
+            <h3 class="category-title">Frontend Engineering</h3>
           </div>
-          <h3 class="skill-name">HTML5</h3>
-          <p class="skill-desc">Semantic markup, accessibility, and modern SEO web standards.</p>
-          <div class="skill-progress-label">
-            <span>Proficiency</span>
-            <span class="skill-percent">92%</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" data-width="92"></div>
+          <div class="skills-cards-grid">
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-html5-plain colored"></i></div>
+              <div>
+                <span class="tech-name">HTML5</span>
+                <span class="tech-badge">Semantic Markup</span>
+              </div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-css3-plain colored"></i></div>
+              <div>
+                <span class="tech-name">CSS3</span>
+                <span class="tech-badge">Flexbox & Grid</span>
+              </div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-javascript-plain colored"></i></div>
+              <div>
+                <span class="tech-name">JavaScript</span>
+                <span class="tech-badge">ES6+ / DOM Logic</span>
+              </div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-bootstrap-plain colored"></i></div>
+              <div>
+                <span class="tech-name">Bootstrap 5</span>
+                <span class="tech-badge">UI Layout Systems</span>
+              </div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-react-original colored"></i></div>
+              <div>
+                <span class="tech-name">React</span>
+                <span class="tech-badge">Component Logic</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- CSS3 -->
-        <div class="skill-card">
-          <div class="skill-header">
-            <div class="skill-icon-wrap">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"
-                class="skill-icon" />
+        <!-- Category 2: Programming Languages -->
+        <div class="skills-category-group">
+          <div class="category-header">
+            <div class="category-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
             </div>
-            <span class="skill-num">02</span>
+            <h3 class="category-title">Programming Languages</h3>
           </div>
-          <h3 class="skill-name">CSS3</h3>
-          <p class="skill-desc">Responsive layouts, minimalist card elements, and clean animations.</p>
-          <div class="skill-progress-label">
-            <span>Proficiency</span>
-            <span class="skill-percent">88%</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" data-width="88"></div>
+          <div class="skills-cards-grid">
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-java-plain colored"></i></div>
+              <div>
+                <span class="tech-name">Java</span>
+                <span class="tech-badge">OOP & Logic</span>
+              </div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-python-plain colored"></i></div>
+              <div>
+                <span class="tech-name">Python</span>
+                <span class="tech-badge">Scripting & Data</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- JavaScript -->
-        <div class="skill-card">
-          <div class="skill-header">
-            <div class="skill-icon-wrap">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                alt="JavaScript" class="skill-icon" />
+        <!-- Category 3: Database -->
+        <div class="skills-category-group">
+          <div class="category-header">
+            <div class="category-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
             </div>
-            <span class="skill-num">03</span>
+            <h3 class="category-title">Database Systems</h3>
           </div>
-          <h3 class="skill-name">JavaScript</h3>
-          <p class="skill-desc">Modern ES6+ coding, DOM manipulation, APIs, and jQuery controls.</p>
-          <div class="skill-progress-label">
-            <span>Proficiency</span>
-            <span class="skill-percent">80%</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" data-width="80"></div>
+          <div class="skills-cards-grid">
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-mysql-plain colored"></i></div>
+              <div>
+                <span class="tech-name">MySQL</span>
+                <span class="tech-badge">Relational DB</span>
+              </div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-sqldeveloper-plain colored"></i></div>
+              <div>
+                <span class="tech-name">SQL</span>
+                <span class="tech-badge">Queries & Schemas</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Bootstrap -->
-        <div class="skill-card">
-          <div class="skill-header">
-            <div class="skill-icon-wrap">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
-                alt="Bootstrap" class="skill-icon" />
+        <!-- Category 4: Tools & Workflow -->
+        <div class="skills-category-group">
+          <div class="category-header">
+            <div class="category-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </svg>
             </div>
-            <span class="skill-num">04</span>
+            <h3 class="category-title">Developer Tools & Workflow</h3>
           </div>
-          <h3 class="skill-name">Bootstrap</h3>
-          <p class="skill-desc">Responsive utility structures, UI systems, and components grid frameworks.</p>
-          <div class="skill-progress-label">
-            <span>Proficiency</span>
-            <span class="skill-percent">85%</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" data-width="85"></div>
+          <div class="skills-cards-grid">
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-git-plain colored"></i></div>
+              <div>
+                <span class="tech-name">Git</span>
+                <span class="tech-badge">Version Control</span>
+              </div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-github-original colored"></i></div>
+              <div>
+                <span class="tech-name">GitHub</span>
+                <span class="tech-badge">Code Repositories</span>
+              </div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-vscode-plain colored"></i></div>
+              <div>
+                <span class="tech-name">VS Code</span>
+                <span class="tech-badge">Primary IDE</span>
+              </div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-icon"><i class="devicon-figma-plain colored"></i></div>
+              <div>
+                <span class="tech-name">Figma</span>
+                <span class="tech-badge">UI/UX Design</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- React -->
-        <div class="skill-card">
-          <div class="skill-header">
-            <div class="skill-icon-wrap">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"
-                class="skill-icon" />
-            </div>
-            <span class="skill-num">05</span>
-          </div>
-          <h3 class="skill-name">React (Soon)</h3>
-          <p class="skill-desc">Modern single page rendering architectures and modular component logic.</p>
-          <div class="skill-progress-label">
-            <span>Proficiency</span>
-            <span class="skill-percent">15%</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" data-width="15"></div>
-          </div>
-        </div>
-
-        <!-- Java -->
-        <div class="skill-card">
-          <div class="skill-header">
-            <div class="skill-icon-wrap">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"
-                class="skill-icon" />
-            </div>
-            <span class="skill-num">06</span>
-          </div>
-          <h3 class="skill-name">Java</h3>
-          <p class="skill-desc">Object-oriented backend design, abstract structures, and data handling.</p>
-          <div class="skill-progress-label">
-            <span>Proficiency</span>
-            <span class="skill-percent">65%</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" data-width="65"></div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- FEATURED PROJECTS -->
   <section class="section" id="projects">
     <div class="container">
       <div class="section-label">03 — Featured Projects</div>
-      <h2 class="section-title">Selected <em>work</em></h2>
+      <h2 class="section-title">Selected <em>works & case studies</em></h2>
+      <p class="section-desc">
+        A collection of web applications and SaaS platforms demonstrating frontend structure, state handling, responsive design, and practical utility.
+      </p>
+
       <div class="projects-grid">
-
-        <!-- Calculator -->
-        <div class="project-card" data-index="0">
+        <!-- FEATURED HERO CARD: GENESIS -->
+        <div class="project-card-featured">
           <div class="project-img-wrap">
-            <img src="https://wellportfolio.netlify.app/img/basic cal.png" alt="Calculator" class="project-img" />
-            <div class="project-tag">CALC</div>
+            <img src="img/genesis-preview.jpg" alt="Genesis AI Sales & Inventory System" class="project-img" />
+            <span class="project-tag-pill">FEATURED SAAS PROJECT</span>
           </div>
           <div class="project-body">
-            <span class="project-num">Project 01</span>
-            <h3 class="project-title">Basic Calculator</h3>
-            <p class="project-desc">A clean, functional web-based calculator with modern responsive styling and
-              responsive logic key commands.</p>
-            <div class="project-tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
+            <span class="project-meta">Case Study 01</span>
+            <h3 class="project-title">Genesis — AI Sales & Inventory Optimization System</h3>
+            <p class="project-desc">
+              An intelligent enterprise web application designed to streamline inventory management, track real-time sales performance, analyze finance metrics, and deliver predictive analytics for business growth.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-pill">HTML5</span>
+              <span class="tech-pill">CSS3</span>
+              <span class="tech-pill">Bootstrap</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">Figma</span>
             </div>
             <div class="project-actions">
-              <a href="https://calculatorniross.netlify.app" target="_blank" class="btn btn-sm btn-primary">View
-                Project</a>
-              <button class="btn btn-sm btn-ghost project-detail-btn">Details</button>
+              <a href="#genesis" class="btn btn-primary btn-sm">Explore Case Study</a>
+              <button class="btn btn-ghost btn-sm" onclick="showProjectDetail(0)">Quick Overview</button>
             </div>
           </div>
         </div>
 
-        <!-- Coffee Website -->
-        <div class="project-card" data-index="1">
+        <!-- Project 02: Coffee Website -->
+        <div class="project-card">
           <div class="project-img-wrap">
-            <img src="https://wellportfolio.netlify.app/img/kapeniross.png" alt="Coffee Website" class="project-img" />
-            <div class="project-tag">KAPE</div>
+            <img src="img/kapeniross.png" alt="Kape Ni Ross — Coffee Website" class="project-img" />
+            <span class="project-tag-pill">WEB STORE</span>
           </div>
           <div class="project-body">
-            <span class="project-num">Project 02</span>
-            <h3 class="project-title">Coffee Website</h3>
-            <p class="project-desc">Elegant responsive website showcasing curated coffee bean roasts and brewing tips
-              with immersive UX.</p>
-            <div class="project-tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>Responsive</span>
+            <span class="project-meta">Project 02</span>
+            <h3 class="project-title">Coffee Website (Kape Ni Ross)</h3>
+            <p class="project-desc">
+              An elegant website showcasing artisanal coffee bean roasts, brewing techniques, and a warm café aesthetic built with responsive grid layouts.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-pill">HTML5</span>
+              <span class="tech-pill">CSS3</span>
+              <span class="tech-pill">Responsive Design</span>
             </div>
             <div class="project-actions">
-              <a href="https://kapeniross.netlify.app" target="_blank" class="btn btn-sm btn-primary">View Project</a>
-              <button class="btn btn-sm btn-ghost project-detail-btn">Details</button>
+              <a href="https://kapeniross.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Live Demo</a>
+              <button class="btn btn-ghost btn-sm" onclick="showProjectDetail(1)">Details</button>
             </div>
           </div>
         </div>
 
-        <!-- To-Do App -->
-        <div class="project-card" data-index="2">
+        <!-- Project 03: To-Do App -->
+        <div class="project-card">
           <div class="project-img-wrap">
-            <img src="https://wellportfolio.netlify.app/img/image.png" alt="To-Do List" class="project-img" />
-            <div class="project-tag">TODO</div>
+            <img src="img/image.png" alt="Task Dashboard To-Do App" class="project-img" />
+            <span class="project-tag-pill">PRODUCTIVITY</span>
           </div>
           <div class="project-body">
-            <span class="project-num">Project 03</span>
+            <span class="project-meta">Project 03</span>
             <h3 class="project-title">To-Do List App</h3>
-            <p class="project-desc">Modern task management dashboard built with persistent local storage logic and state
-              trackers.</p>
-            <div class="project-tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
+            <p class="project-desc">
+              A modern task management dashboard with browser local storage integration, allowing users to add, filter, complete, and retain daily tasks.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-pill">HTML5</span>
+              <span class="tech-pill">CSS3</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">LocalStorage API</span>
             </div>
             <div class="project-actions">
-              <a href="https://todopart2.netlify.app/" target="_blank" class="btn btn-sm btn-primary">View Project</a>
-              <button class="btn btn-sm btn-ghost project-detail-btn">Details</button>
+              <a href="https://todopart2.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Live Demo</a>
+              <button class="btn btn-ghost btn-sm" onclick="showProjectDetail(2)">Details</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 04: Basic Calculator -->
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="img/basic cal.png" alt="Web-Based Calculator" class="project-img" />
+            <span class="project-tag-pill">UTILITY</span>
+          </div>
+          <div class="project-body">
+            <span class="project-meta">Project 04</span>
+            <h3 class="project-title">Basic Calculator</h3>
+            <p class="project-desc">
+              A clean web calculator app supporting arithmetic calculations, keyboard listeners, responsive keypads, and a sleek dark theme interface.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-pill">HTML5</span>
+              <span class="tech-pill">CSS3</span>
+              <span class="tech-pill">JavaScript</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://calculatorniross.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Live Demo</a>
+              <button class="btn btn-ghost btn-sm" onclick="showProjectDetail(3)">Details</button>
             </div>
           </div>
         </div>
@@ -334,190 +463,399 @@
     </div>
   </section>
 
-  <!-- PROJECT DETAIL MODAL -->
-  <div class="modal-overlay" id="projectModal">
-    <div class="modal-box">
-      <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">&times;</button>
-      <div class="modal-content" id="modalContent"></div>
-    </div>
-  </div>
-
-  <!-- RESUME -->
-  <section class="section" id="resume">
+  <!-- GENESIS CASE STUDY SECTION -->
+  <section class="section genesis-section" id="genesis">
     <div class="container">
-      <div class="section-label">04 — Resume / CV</div>
-      <h2 class="section-title">My <em>background</em></h2>
-      <div class="resume-grid">
-
-        <div class="resume-col">
-          <h3 class="resume-col-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+      <div class="case-study-card">
+        <div class="cs-header">
+          <div class="cs-title-area">
+            <div class="cs-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              FEATURED SAAS CASE STUDY
+            </div>
+            <h2 class="cs-heading">Genesis — AI Sales & Inventory Optimization System</h2>
+          </div>
+          <a href="https://github.com/roswell23" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
             </svg>
-            Education
-          </h3>
-          <div class="timeline">
-            <!-- Uni -->
-            <div class="timeline-item">
-              <div class="tl-dot"></div>
-              <div class="tl-body">
-                <span class="tl-year">2023 – Present</span>
-                <h4 class="tl-title">Bachelor of Science in Information Technology</h4>
-                <p class="tl-sub">Cavite State University – Tanza Campus</p>
-                <p class="tl-desc">Specializing in Application Development and Emerging Technologies. Focused on
-                  frontend development, UI/UX, and modern web standards.</p>
-              </div>
-            </div>
-            <!-- High School -->
-            <div class="timeline-item">
-              <div class="tl-dot"></div>
-              <div class="tl-body">
-                <span class="tl-year">2022 – 2023</span>
-                <h4 class="tl-title">Tanza National Trade School</h4>
-                <p class="tl-sub">Tanza, Cavite</p>
-                <p class="tl-desc">Completed the Senior High School ICT strand with primary focus on computer systems
-                  and frontend technologies.</p>
-              </div>
-            </div>
+            Repository
+          </a>
+        </div>
+
+        <div class="cs-display-grid">
+          <div class="cs-preview-window">
+            <img src="img/genesis-preview.jpg" alt="Genesis Dashboard Screenshot" class="cs-preview-img" />
+          </div>
+
+          <div class="cs-overview-text">
+            <h3 style="font-family: var(--ff-title); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 0.75rem;">
+              Problem & Solution Overview
+            </h3>
+            <p>
+              Retailers and small businesses often struggle with overstocking, manual inventory reconciliation, and delayed financial reporting. <strong>Genesis</strong> addresses this by providing an all-in-one SaaS management system that automates stock tracking, aggregates sales data, and projects future inventory needs using predictive intelligence.
+            </p>
+            <p>
+              <strong>My Role:</strong> Lead UI/UX & Frontend Developer. Responsible for designing the prototype in Figma, building the dark high-contrast dashboard using HTML, CSS, and Bootstrap, and writing JavaScript logic for the user interface.
+            </p>
           </div>
         </div>
 
-        <div class="resume-col resume-col-skills">
-          <h3 class="resume-col-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-            </svg>
-            Core Skills
-          </h3>
-          <div class="skills-tags">
-            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Bootstrap</span>
-            <span>Python</span><span>Java</span><span>Responsive Design</span><span>DOM Manipulation</span>
-            <span>Git</span><span>Netlify</span><span>UI/UX Basics</span><span>Problem Solving</span>
+        <!-- 7 Core SaaS Feature Cards -->
+        <h3 style="font-family: var(--ff-title); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 1.25rem;">
+          Key Platform Modules & Features
+        </h3>
+        <div class="cs-features-grid">
+          <div class="feature-box">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </div>
+            <h4 class="feature-title">1. Inventory Optimization</h4>
+            <p class="feature-desc">Real-time stock level monitoring, SKU tracking, and automated restock alerts.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <h4 class="feature-title">2. Sales Analytics</h4>
+            <p class="feature-desc">Visual graphs showing daily, weekly, and monthly revenue performance.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <h4 class="feature-title">3. Finance Tracking</h4>
+            <p class="feature-desc">Expense breakdown, net profit margin calculation, and transaction log tracking.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h4 class="feature-title">4. Customer Management</h4>
+            <p class="feature-desc">Client purchase history, loyalty metrics, and customer contact records.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </div>
+            <h4 class="feature-title">5. Automated Reports</h4>
+            <p class="feature-desc">One-click PDF/CSV export engine for store audits and quarterly reports.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <h4 class="feature-title">6. Predictive Analytics</h4>
+            <p class="feature-desc">AI demand forecasting suggesting order quantities before inventory runs out.</p>
           </div>
         </div>
 
-      </div>
-
-      <div class="resume-cta">
-        <button class="btn btn-primary download-cv-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="7 10 12 15 17 10" />
-            <line x1="12" y1="15" x2="12" y2="3" />
-          </svg>
-          Download Full CV
-        </button>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- LEARNING JOURNEY / EXPERIENCE TIMELINE -->
+  <section class="section" id="journey">
+    <div class="container">
+      <div class="section-label">04 — Timeline</div>
+      <h2 class="section-title">My development <em>journey</em></h2>
+      <p class="section-desc">
+        A concise overview of my education, key milestones, and ongoing growth in software engineering.
+      </p>
+
+      <div class="timeline">
+        <!-- Milestone 1 -->
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-header">
+              <h3 class="tl-title">BSIT Degree Student</h3>
+              <span class="tl-year">2023 – Present</span>
+            </div>
+            <p class="tl-sub">Cavite State University – Tanza Campus</p>
+            <p class="tl-desc">
+              Currently pursuing Bachelor of Science in Information Technology. Specializing in Web Development, Software Engineering fundamentals, Object-Oriented Programming, and database systems.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-header">
+              <h3 class="tl-title">Senior High School — ICT Strand</h3>
+              <span class="tl-year">2022 – 2023</span>
+            </div>
+            <p class="tl-sub">Tanza National Trade School</p>
+            <p class="tl-desc">
+              Graduated from the Information and Communications Technology track with foundational training in computer systems, basic web markup, and programming logic.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-header">
+              <h3 class="tl-title">Building Core Frontend Projects</h3>
+              <span class="tl-year">2024</span>
+            </div>
+            <p class="tl-sub">Independent Development & Web Apps</p>
+            <p class="tl-desc">
+              Created responsive web applications including Kape Ni Ross coffee store, Task Manager with local storage, and custom arithmetic web tools while mastering ES6+ JavaScript.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-header">
+              <h3 class="tl-title">Advanced SaaS Systems & React</h3>
+              <span class="tl-year">Present</span>
+            </div>
+            <p class="tl-sub">Continuous Learning & SaaS Architecture</p>
+            <p class="tl-desc">
+              Architected the Genesis SaaS inventory optimization system. Continuously expanding knowledge in React component state, API integrations, and modern design systems.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-label">05 — What I Can Do</div>
+      <h2 class="section-title">Services & <em>capabilities</em></h2>
+      <p class="section-desc">
+        How I can contribute to teams, clients, and web application projects.
+      </p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 class="service-title">Responsive Web Dev</h3>
+          <p class="service-desc">
+            Building websites that look sharp and operate seamlessly across all devices, from mobile phones to high-res displays.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 class="service-title">Frontend Development</h3>
+          <p class="service-desc">
+            Writing modular, clean, and scalable HTML5, CSS3, and JavaScript code with structured DOM logic and state handling.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">UI Implementation</h3>
+          <p class="service-desc">
+            Converting Figma wireframes and visual designs into pixel-perfect, interactive web interfaces with high fidelity.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="service-title">Website Optimization</h3>
+          <p class="service-desc">
+            Enhancing page speed, accessibility standards (WCAG), semantic SEO structure, and smooth micro-animations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
   <section class="section" id="contact">
     <div class="container">
-      <div class="section-label">05 — Contact</div>
-      <h2 class="section-title">Start a <em>conversation</em></h2>
-      <p class="contact-intro">I'm always open to discussing new projects, creative ideas, or opportunities to be part
-        of your vision. Let's build something remarkable together.</p>
+      <div class="section-label">06 — Contact</div>
+      <h2 class="section-title">Let's build <em>something great</em></h2>
+      <p class="section-desc">
+        I'm always interested in learning, building, and working on meaningful web projects. Feel free to reach out!
+      </p>
 
       <div class="contact-grid">
-        <div class="contact-info">
+        <!-- Contact Info Left -->
+        <div class="contact-info-card">
           <div class="contact-item">
             <div class="contact-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
             </div>
             <div>
-              <span class="contact-label">Email</span>
-              <a href="mailto:cryefionacruz@gmail.com" class="contact-val">cryefionacruz@gmail.com</a>
+              <span class="contact-label">Email Address</span>
+              <div class="contact-val">
+                <a href="mailto:cryefionacruz@gmail.com">cryefionacruz@gmail.com</a>
+              </div>
             </div>
           </div>
+
           <div class="contact-item">
             <div class="contact-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
               </svg>
             </div>
             <div>
               <span class="contact-label">Location</span>
-              <span class="contact-val">General Trias, Cavite, Philippines</span>
+              <div class="contact-val">General Trias, Cavite, Philippines</div>
             </div>
           </div>
+
           <div class="contact-item">
             <div class="contact-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.02-.99a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
               </svg>
             </div>
             <div>
-              <span class="contact-label">Status</span>
-              <span class="contact-val status-open">Open to Opportunities</span>
+              <span class="contact-label">Current Status</span>
+              <div class="contact-val" style="color: var(--accent-emerald);">Open to Junior Developer Roles & Internship</div>
             </div>
           </div>
         </div>
 
+        <!-- Contact Form Right -->
         <form class="contact-form" id="contactForm" novalidate>
-          <div class="form-row">
-            <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 form-group">
               <label for="fname">Full Name <span class="req">*</span></label>
-              <input type="text" id="fname" name="fname" placeholder="Juan dela Cruz" />
+              <input type="text" id="fname" name="fname" class="form-control" placeholder="Juan dela Cruz" />
               <span class="form-error" id="fnameError"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group">
               <label for="femail">Email Address <span class="req">*</span></label>
-              <input type="email" id="femail" name="femail" placeholder="juan@email.com" />
+              <input type="email" id="femail" name="femail" class="form-control" placeholder="juan@email.com" />
               <span class="form-error" id="femailError"></span>
             </div>
           </div>
+
           <div class="form-group">
             <label for="fsubject">Subject <span class="req">*</span></label>
-            <input type="text" id="fsubject" name="fsubject" placeholder="Project Inquiry" />
+            <input type="text" id="fsubject" name="fsubject" class="form-control" placeholder="Project Inquiry / Job Opportunity" />
             <span class="form-error" id="fsubjectError"></span>
           </div>
+
           <div class="form-group">
             <label for="fmessage">Message <span class="req">*</span></label>
-            <textarea id="fmessage" name="fmessage" rows="5" placeholder="Tell me about your project..."></textarea>
+            <textarea id="fmessage" name="fmessage" rows="4" class="form-control" placeholder="Tell me about your project or opportunity..."></textarea>
             <span class="form-error" id="fmessageError"></span>
           </div>
-          <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            Send Message
+          </button>
+
           <div class="form-success" id="formSuccess">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12" />
+              <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            Message sent successfully! I'll get back to you soon.
+            <span>Message sent successfully! Thank you for reaching out, Roswell will respond soon.</span>
           </div>
         </form>
       </div>
     </div>
   </section>
 
+  <!-- PROJECT DETAIL MODAL -->
+  <div class="modal-overlay" id="projectModal" role="dialog" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close modal window">&times;</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
-      <span class="footer-logo">
-        <img src="img/crown.png" alt="crown" class="nav-crown" style="width: 20px; height: auto;" />
-        <span>RC</span>
-      </span>
-      <p class="footer-text">Roswell Cruz &copy; <span id="footerYear"></span> — All rights reserved.</p>
+      <div class="d-flex align-items-center gap-2">
+        <img src="img/crown.png" alt="Crown logo" class="nav-crown" style="width: 20px;" />
+        <span style="font-family: var(--ff-title); font-weight: 700; color: var(--text-primary);">Roswell Cruz</span>
+        <span style="color: var(--text-dim);">| Frontend Developer</span>
+      </div>
+
       <div class="footer-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
+        <a href="#genesis">Case Study</a>
         <a href="#contact">Contact</a>
       </div>
+
+      <p class="m-0">&copy; <span id="footerYear"></span> Roswell Cruz. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Back to top -->
-  <button class="back-top" id="backTop" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="18 15 12 9 6 15" />
+  <!-- Back to top floating button -->
+  <button class="back-top" id="backTop" aria-label="Scroll back to top" onclick="scrollToTop()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
 
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="bootstrap-5.3.7-dist/js/bootstrap.bundle.min.js"></script>
