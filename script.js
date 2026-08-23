@@ -313,7 +313,7 @@ TECHNICAL SKILLS & COMPETENCIES
 • Frontend: HTML5, CSS3, JavaScript (ES6+), Bootstrap 5, React, Flexbox/Grid
 • Programming: Java, Python
 • Databases: MySQL, SQL Relational Schemas
-• Tools & Workflow: Git, GitHub, VS Code, Figma UI Design
+• Tools & Workflow: Git, GitHub, VS Code, Figma UI Design, Antigravity AI
 
 ----------------------------------------------------------------
 FEATURED PROJECTS

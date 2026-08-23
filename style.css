@@ -1364,10 +1364,16 @@ select {
   transition: var(--transition);
 }
 
+.form-control::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
 .form-control:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
   background: #0e1626;
+  outline: none;
 }
 
 .form-control.error {
