@@ -51,6 +51,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -62,7 +64,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  width: 100%;
   position: relative;
+  overflow-wrap: break-word;
 }
 
 /* Background Ambient Lighting Glows */
@@ -72,6 +76,7 @@ body::before {
   top: -20%;
   left: 20%;
   width: 600px;
+  max-width: 100vw;
   height: 600px;
   background: radial-gradient(circle, rgba(99, 102, 241, 0.07) 0%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none;
@@ -84,6 +89,7 @@ body::after {
   bottom: 10%;
   right: 10%;
   width: 500px;
+  max-width: 100vw;
   height: 500px;
   background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none;
@@ -96,7 +102,11 @@ a {
   transition: var(--transition);
 }
 
-img {
+img,
+svg,
+video,
+iframe,
+canvas {
   display: block;
   max-width: 100%;
   height: auto;
@@ -108,6 +118,7 @@ textarea,
 select {
   font-family: inherit;
   outline: none;
+  max-width: 100%;
 }
 
 /* Custom Scrollbar */
@@ -136,6 +147,7 @@ select {
 
 /* ── Container & Utility Layouts ── */
 .container {
+  width: 100%;
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -163,12 +175,13 @@ select {
 
 .section-title {
   font-family: var(--ff-title);
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.02em;
   line-height: 1.2;
   margin-bottom: 1.25rem;
+  overflow-wrap: break-word;
 }
 
 .section-title em {
@@ -179,10 +192,11 @@ select {
 }
 
 .section-desc {
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
   color: var(--text-muted);
   max-width: 620px;
   margin-bottom: 2.5rem;
+  overflow-wrap: break-word;
 }
 
 /* ── Buttons & CTAs ── */
@@ -201,6 +215,8 @@ select {
   cursor: pointer;
   white-space: nowrap;
   border: 1px solid transparent;
+  max-width: 100%;
+  text-align: center;
 }
 
 .btn-primary {
@@ -248,6 +264,35 @@ select {
 
 .btn-full {
   width: 100%;
+}
+
+/* ── Responsive Table Helper ── */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.5rem;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+table th,
+table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+table th {
+  font-family: var(--ff-title);
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-surface);
 }
 
 /* ── Scroll Progress Bar ── */
@@ -314,6 +359,7 @@ select {
   align-items: center;
   gap: 0.5rem;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .nav-crown {
@@ -398,6 +444,18 @@ select {
   transition: var(--transition);
 }
 
+.nav-hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 /* ============================================================
    HERO SECTION
    ============================================================ */
@@ -430,6 +488,7 @@ select {
   border-radius: 30px;
   margin-bottom: 1.5rem;
   box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+  max-width: 100%;
 }
 
 .badge-dot {
@@ -439,6 +498,7 @@ select {
   background: var(--accent-emerald);
   box-shadow: 0 0 8px var(--accent-emerald);
   animation: pulse-dot 2s infinite ease-in-out;
+  flex-shrink: 0;
 }
 
 @keyframes pulse-dot {
@@ -449,11 +509,12 @@ select {
 .hero-title {
   font-family: var(--ff-title);
   font-weight: 800;
-  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-size: clamp(2rem, 5.5vw, 4.2rem);
   color: var(--text-primary);
   line-height: 1.1;
   letter-spacing: -0.025em;
   margin-bottom: 1rem;
+  overflow-wrap: break-word;
 }
 
 .hero-title .name-highlight {
@@ -464,7 +525,7 @@ select {
 
 .hero-role {
   display: block;
-  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-size: clamp(1.25rem, 3vw, 2.1rem);
   font-weight: 700;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
@@ -473,11 +534,12 @@ select {
 }
 
 .hero-sub {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
   color: var(--text-muted);
   line-height: 1.65;
   margin-bottom: 2rem;
   max-width: 540px;
+  overflow-wrap: break-word;
 }
 
 .hero-btns {
@@ -491,22 +553,25 @@ select {
 .hero-socials {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
 }
 
 .social-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
   color: var(--text-muted);
   font-size: 0.88rem;
   font-weight: 500;
   transition: var(--transition);
+  word-break: break-all;
 }
 
 .social-link svg {
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
 }
 
 .social-link:hover {
@@ -520,12 +585,14 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .hero-portrait-card {
   position: relative;
   width: 100%;
   max-width: 390px;
+  margin: 0 auto;
   border-radius: var(--radius-xl);
   padding: 6px;
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.45) 0%, rgba(139, 92, 246, 0.25) 50%, rgba(255, 255, 255, 0.06) 100%);
@@ -551,7 +618,7 @@ select {
 
 .hero-portrait-img {
   width: 100%;
-  height: 470px;
+  height: clamp(320px, 48vh, 470px);
   object-fit: cover;
   object-position: center 15%;
   display: block;
@@ -630,17 +697,19 @@ select {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   animation: float 4s infinite ease-in-out;
   backdrop-filter: blur(8px);
+  z-index: 2;
 }
 
 .floating-badge img,
 .floating-badge svg {
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
 }
 
-.badge-1 { top: -15px; right: 20px; animation-delay: 0s; }
-.badge-2 { bottom: 30px; left: -25px; animation-delay: 2s; }
-.badge-3 { bottom: -15px; right: 40px; animation-delay: 1s; }
+.badge-1 { top: -15px; right: 15px; animation-delay: 0s; }
+.badge-2 { bottom: 30px; left: -10px; animation-delay: 2s; }
+.badge-3 { bottom: -15px; right: 25px; animation-delay: 1s; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -670,6 +739,7 @@ select {
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
 }
 
 .about-intro-text strong {
@@ -691,6 +761,7 @@ select {
   font-size: 0.82rem;
   font-weight: 500;
   color: var(--text-muted);
+  max-width: 100%;
 }
 
 /* Stats Cards Grid */
@@ -776,6 +847,7 @@ select {
 .category-icon {
   color: var(--primary);
   display: flex;
+  flex-shrink: 0;
 }
 
 .category-title {
@@ -787,7 +859,7 @@ select {
 
 .skills-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 1rem;
 }
 
@@ -800,6 +872,7 @@ select {
   align-items: center;
   gap: 0.85rem;
   transition: var(--transition);
+  min-width: 0;
 }
 
 .tech-card:hover {
@@ -830,12 +903,14 @@ select {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-primary);
+  overflow-wrap: break-word;
 }
 
 .tech-badge {
   font-size: 0.7rem;
   color: var(--text-dim);
   display: block;
+  overflow-wrap: break-word;
 }
 
 /* ============================================================
@@ -913,6 +988,7 @@ select {
   left: 1rem;
   background: rgba(9, 13, 22, 0.85);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--primary);
   font-family: var(--ff-title);
@@ -921,6 +997,10 @@ select {
   letter-spacing: 0.05em;
   padding: 0.3rem 0.75rem;
   border-radius: 20px;
+  max-width: calc(100% - 2rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .project-body {
@@ -946,6 +1026,7 @@ select {
   color: var(--text-primary);
   margin-bottom: 0.6rem;
   line-height: 1.3;
+  overflow-wrap: break-word;
 }
 
 .project-desc {
@@ -954,6 +1035,7 @@ select {
   line-height: 1.6;
   margin-bottom: 1.25rem;
   flex: 1;
+  overflow-wrap: break-word;
 }
 
 .project-tech-stack {
@@ -976,6 +1058,7 @@ select {
 .project-actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: auto;
 }
@@ -1006,7 +1089,6 @@ select {
   flex-wrap: wrap;
   gap: 1.5rem;
   margin-bottom: 2.5rem;
-
 }
 
 .cs-title-area {
@@ -1026,14 +1108,16 @@ select {
   padding: 0.35rem 0.9rem;
   border-radius: 30px;
   margin-bottom: 0.85rem;
+  max-width: 100%;
 }
 
 .cs-heading {
   font-family: var(--ff-title);
-  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1.2;
+  overflow-wrap: break-word;
 }
 
 .cs-display-grid {
@@ -1050,6 +1134,7 @@ select {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  width: 100%;
 }
 
 .cs-preview-img {
@@ -1062,6 +1147,7 @@ select {
   font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.7;
+  overflow-wrap: break-word;
 }
 
 .cs-overview-text p {
@@ -1106,12 +1192,14 @@ select {
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.4rem;
+  overflow-wrap: break-word;
 }
 
 .feature-desc {
   font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
 /* ============================================================
@@ -1188,6 +1276,7 @@ select {
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
+  overflow-wrap: break-word;
 }
 
 .tl-year {
@@ -1198,6 +1287,7 @@ select {
   padding: 0.2rem 0.65rem;
   border-radius: 20px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .tl-sub {
@@ -1211,6 +1301,7 @@ select {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  overflow-wrap: break-word;
 }
 
 /* ============================================================
@@ -1249,6 +1340,7 @@ select {
   align-items: center;
   justify-content: center;
   margin-bottom: 1.25rem;
+  flex-shrink: 0;
 }
 
 .service-icon svg {
@@ -1262,12 +1354,14 @@ select {
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.6rem;
+  overflow-wrap: break-word;
 }
 
 .service-desc {
   font-size: 0.88rem;
   color: var(--text-muted);
   line-height: 1.6;
+  overflow-wrap: break-word;
 }
 
 /* ============================================================
@@ -1294,6 +1388,7 @@ select {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
+  min-width: 0;
 }
 
 .contact-icon {
@@ -1322,6 +1417,8 @@ select {
   font-size: 0.98rem;
   font-weight: 600;
   color: var(--text-primary);
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .contact-val a:hover {
@@ -1334,6 +1431,7 @@ select {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 2.25rem;
+  width: 100%;
 }
 
 .form-group {
@@ -1411,8 +1509,9 @@ select {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 2000;
   display: flex;
   align-items: center;
@@ -1434,6 +1533,8 @@ select {
   border-radius: var(--radius-lg);
   max-width: 640px;
   width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
   padding: 2rem;
   position: relative;
   transform: translateY(20px);
@@ -1449,22 +1550,23 @@ select {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
   color: var(--text-muted);
   font-size: 1.5rem;
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: var(--transition);
+  z-index: 10;
 }
 
 .modal-close:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   color: var(--text-primary);
 }
 
@@ -1530,8 +1632,44 @@ select {
 }
 
 /* ============================================================
-   RESPONSIVE LAYOUT BREAKPOINTS
+   RESPONSIVE LAYOUT BREAKPOINTS & MEDIA QUERIES
    ============================================================ */
+
+/* ── 1. Large / 4K Screens (1441px+) ── */
+@media (min-width: 1441px) {
+  .container {
+    max-width: 1240px;
+  }
+  .section {
+    padding: 7.5rem 0;
+  }
+}
+
+/* ── 2. Laptops & Small Desktops (1025px – 1440px) ── */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+  .hero-grid {
+    gap: 2.5rem;
+  }
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+}
+
+/* ── 3. Tablets Landscape & Portables (769px – 1024px) ── */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cs-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── 4. Medium Screens / Tablets (<= 992px) ── */
 @media (max-width: 992px) {
   .hero-grid,
   .about-grid,
@@ -1549,67 +1687,313 @@ select {
     grid-template-columns: 1fr;
   }
 
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .project-card-featured .project-img-wrap {
+    height: 240px;
+    min-height: auto;
   }
 
-  .cs-features-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-portrait-card {
+    max-width: 350px;
   }
+
+  .badge-1 { top: -10px; right: 10px; }
+  .badge-2 { bottom: 25px; left: 10px; }
+  .badge-3 { bottom: -10px; right: 15px; }
 }
 
+/* ── 5. Mobile & Small Devices (<= 768px) ── */
 @media (max-width: 768px) {
+  .nav-inner {
+    height: 64px;
+    padding: 0 1.25rem;
+  }
+
   .nav-links {
     position: fixed;
-    top: 68px;
+    top: 64px;
     left: 0;
     right: 0;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
     background: rgba(9, 13, 22, 0.98);
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     flex-direction: column;
-    padding: 1.5rem;
+    padding: 1.5rem 1.25rem;
+    gap: 0.4rem;
     border-bottom: 1px solid var(--border-color);
     clip-path: circle(0% at 100% 0%);
     transition: clip-path 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   }
 
   .nav-links.open {
     clip-path: circle(140% at 100% 0%);
   }
 
+  .nav-links .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
+  }
+
   .nav-hamburger {
     display: flex;
   }
 
-  .services-grid,
-  .cs-features-grid {
-    grid-template-columns: 1fr;
+  .hero {
+    padding: 6.5rem 0 3rem;
+    min-height: auto;
   }
 
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-socials {
+    justify-content: center;
   }
 
   .section {
     padding: 4.5rem 0;
   }
 
+  .about-intro-box {
+    padding: 1.75rem;
+  }
+
   .case-study-card {
     padding: 1.75rem;
   }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+  }
+
+  .back-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+  }
 }
 
+/* ── 6. Large Mobile Phones (<= 576px) ── */
+@media (max-width: 576px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .services-grid,
+  .cs-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skills-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+
+  .skills-category-group {
+    padding: 1.25rem 1rem;
+  }
+
+  .tech-card {
+    padding: 0.75rem 0.8rem;
+    gap: 0.6rem;
+  }
+
+  .tech-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .tech-name {
+    font-size: 0.82rem;
+  }
+
+  .tech-badge {
+    font-size: 0.68rem;
+  }
+
+  .project-body {
+    padding: 1.25rem;
+  }
+
+  .contact-info-card,
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .timeline::before {
+    left: 12px;
+  }
+
+  .timeline-item {
+    padding-left: 34px;
+    margin-bottom: 1.75rem;
+  }
+
+  .tl-dot {
+    left: 4px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .tl-content {
+    padding: 1.15rem;
+  }
+
+  .tl-title {
+    font-size: 1.05rem;
+  }
+
+  .modal-overlay {
+    padding: 0.75rem;
+  }
+
+  .modal-box {
+    padding: 1.25rem;
+    max-height: 92vh;
+  }
+}
+
+/* ── 7. Compact Mobile Phones (320px – 480px) ── */
 @media (max-width: 480px) {
+  .hero-badge {
+    font-size: 0.76rem;
+    padding: 0.35rem 0.75rem;
+  }
+
   .hero-btns {
     flex-direction: column;
     width: 100%;
+    gap: 0.75rem;
   }
 
   .btn {
     width: 100%;
+    white-space: normal;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .stat-card {
+    padding: 1.15rem 0.85rem;
+  }
+
+  .stat-num {
+    font-size: 1.75rem;
+  }
+
+  .stat-label {
+    font-size: 0.76rem;
+  }
+
+  .hero-portrait-card {
+    max-width: 290px;
+  }
+
+  .hero-portrait-img {
+    height: 330px;
+  }
+
+  .floating-badge {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.72rem;
+  }
+
+  .badge-1 { top: -8px; right: 5px; }
+  .badge-2 { bottom: 15px; left: 5px; }
+  .badge-3 { bottom: -8px; right: 5px; }
+
+  .case-study-card {
+    padding: 1.25rem;
+  }
+
+  .cs-badge {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.65rem;
+  }
+
+  .contact-info-card,
+  .contact-form {
+    padding: 1.15rem;
+  }
+
+  .contact-item {
+    gap: 0.75rem;
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ── 8. Ultra-Small Mobile Phones (320px – 375px) ── */
+@media (max-width: 375px) {
+  .container {
+    padding: 0 0.85rem;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-role {
+    font-size: 1.15rem;
   }
 
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .skills-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-portrait-card {
+    max-width: 260px;
+  }
+
+  .hero-portrait-img {
+    height: 290px;
+  }
+
+  .project-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .project-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ── 9. Mobile Landscape Orientation Mode ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 5rem 0 2.5rem;
+  }
+
+  .hero-portrait-img {
+    height: 240px;
+  }
+
+  .nav-links {
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
   }
 }
