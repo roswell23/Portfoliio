@@ -1457,7 +1457,7 @@ table th {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
-  color: var(--text-primary);
+  color: var(--text-primary) !important;
   font-size: 0.9rem;
   transition: var(--transition);
 }
@@ -1471,7 +1471,17 @@ table th {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
   background: #0e1626;
+  color: var(--text-primary) !important;
   outline: none;
+}
+
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus,
+.form-control:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #0b111d inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-control.error {
